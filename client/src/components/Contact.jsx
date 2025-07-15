@@ -11,7 +11,7 @@ const Contact = () => {
             <div className="bg-gradient-to-tr from-blue-500 to-purple-600 p-2 rounded-lg">
            <img src="/code-solid.svg" alt="code logo"  className="min-w-5 min-h-6"/>
             </div>
-            <h2 className="text-xl font-bold">SyntaxFlow</h2>
+            <h2 className="text-xl font-bold">CodeShift</h2>
           </div>
           <p className="text-gray-300 leading-relaxed">
             The fastest and most secure way to convert between code formats.

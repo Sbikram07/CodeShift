@@ -11,7 +11,7 @@ const UserRouter=require("./routes/user.route")
 const ChatRouter=require("./routes/chat.route")
 connectDB()
 app.use(cors({
-  origin: "http://localhost:5173", // ✅ your frontend's origin
+  origin: process.env.CLIENT_URL, // ✅ your frontend's origin
   credentials: true               // ✅ allow cookies
 }))
 app.use(express.json())

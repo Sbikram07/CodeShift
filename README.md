@@ -6,9 +6,9 @@
 
 ## Visuals
 <p align="center">
-  <img src="./landing.png" alt="Landing Page" width="80%" />
+  <img src="./preview/landing.png" alt="Landing Page" width="80%" />
   <br/>
-  <img src="./image.png" alt="Code Conversion Example" width="80%" />
+  <img src="./preview/image.png" alt="Code Conversion Example" width="80%" />
 </p>
 
 ---
@@ -40,36 +40,26 @@
 - 📦 Mongoose
 - 🔒 bcrypt.js & JWT (for secure authentication)
 
----
 
-## 🧾 Folder Structure
-
+```bash
 codeshift/
-├── client/ # React frontend
-│ ├── public/
-│ └── src/
-│ ├── assets/
-│ ├── components/
-│ ├── context/
-│ ├── pages/
-│ └── App.jsx
+├── client/             # React frontend
+│   ├── public/
+│   ├── src/
+│   ├── .env            # Frontend environment variables (EmailJS, API base URL, etc.)
+│   └── package.json    # Frontend dependencies
 │
-├── server/ # Express backend
-│ ├── controllers/
-│ ├── models/
-│ ├── routes/
-│ ├── middleware/
-│ ├── config/
-│ └── server.js
+├── server/             # Express backend
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── config/
+│   ├── .env            # Backend environment variables (MONGO_URL, JWT_SECRET_KEY)
+│   └── package.json    # Backend dependencies
 │
-├── .env
 ├── .gitignore
-├── package.json
 └── README.md
-
-
-
----
 
 ## 🚀Setup Instrution
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+const BASE_URL = import.meta.env.VITE_BASE_API_URL;
 const ConverterContext = createContext();
 
 export const ConverterProvider = ({ children }) => {
@@ -7,134 +7,6 @@ export const ConverterProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  //  const convertCode = async ({ inputLang, outputLang, code }) => {
-  //   setLoading(true);
-  //   setConvertedCode("");
-  //   setError(null);
-
-  //   try {
-  //     const response = await fetch("http://localhost:3000/api/chat/generate", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       credentials: "include",
-  //       body: JSON.stringify({ inputLang, outputLang, code }),
-  //     });
-
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       throw new Error(errorData.message || "Conversion failed");
-  //     }
-
-  //     const reader = response.body.getReader();
-  //     const decoder = new TextDecoder("utf-8");
-
-  //     let done = false;
-  //     let accumulatedCode = "";
-
-  //     while (!done) {
-  //       const { value, done: doneReading } = await reader.read();
-  //       done = doneReading;
-
-  //       const chunk = decoder.decode(value, { stream: true });
-  //       const lines = chunk.split("\n");
-
-  //       for (let line of lines) {
-  //         if (line.startsWith("data:")) {
-  //           const content = line.replace(/^data:\s*/, "").trim();
-
-  //           if (content === "end") {
-  //             done = true;
-  //             break;
-  //           }
-
-  //           accumulatedCode += content + "\n";
-  //           setConvertedCode(accumulatedCode); // Update on each chunk
-  //         }
-  //       }
-  //     }
-  //   } catch (err) {
-  //     setError(err.message);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  //   return (
-  //     <ConverterContext.Provider
-  //       value={{ convertCode, convertedCode, setConvertedCode, loading, error }}
-  //     >
-  //       {children}
-  //     </ConverterContext.Provider>
-  //   );
-  // };
-
-  // export const useConverter = () => useContext(ConverterContext);
-
-// const convertCode = async ({ inputLang, outputLang, code }) => {
-//   setLoading(true);
-//   setConvertedCode("");
-//   setError(null);
-
-//   try {
-//     const response = await fetch("http://localhost:3000/api/chat/generate", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       credentials: "include",
-//       body: JSON.stringify({ inputLang, outputLang, code }),
-//     });
-
-//     if (!response.ok) {
-//       const errorData = await response.json();
-//       throw new Error(errorData.message || "Conversion failed");
-//     }
-
-//     const reader = response.body.getReader();
-//     const decoder = new TextDecoder("utf-8");
-
-//     let fullResponse = "";
-//     let done = false;
-
-//     while (!done) {
-//       const { value, done: doneReading } = await reader.read();
-//       done = doneReading;
-//       fullResponse += decoder.decode(value, { stream: true });
-//     }
-
-    
-//     const codeStartMatch = fullResponse.match(/__CODE_START__([\s\S]*?)__CODE_END__/);
-
-//     if (!codeStartMatch || !codeStartMatch[1]) {
-//       setConvertedCode("Code block not found.");
-//       return;
-//     }
-
-//     const codeSection = codeStartMatch[1];
-
-//     const match = codeSection.match(/```[\w.+-]*\n([\s\S]*?)```/);
-
-//     let rawCode = match && match[1] ? match[1] : codeSection;
-
-//     const formattedCode = rawCode
-//       .split("\n")
-//       .map((line) => line.trimEnd()) 
-//       .filter((line, idx, arr) => {
-      
-//         return !(line.trim() === "" && arr[idx - 1]?.trim() === "");
-//       })
-//       .join("\n")
-//       .replace(/\s+\n/g, "\n");
-
-//     setConvertedCode(formattedCode.trim());
-//   } catch (err) {
-//     setError(err.message);
-//   } finally {
-//     setLoading(false);
-//   }
-// };
 
 const convertCode = async ({ inputLang, outputLang, code }) => {
   setLoading(true);
@@ -142,7 +14,7 @@ const convertCode = async ({ inputLang, outputLang, code }) => {
   setError(null);
 
   try {
-    const response = await fetch("http://localhost:3000/api/chat/generate", {
+    const response = await fetch(`${BASE_URL}/api/chat/generate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

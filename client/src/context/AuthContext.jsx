@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-
+const BASE_URL = import.meta.env.VITE_BASE_API_URL;
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/auth/me', {
+        const res = await fetch(`${BASE_URL}/api/auth/me`, {
           method: 'POST',
           credentials: 'include',
         });
@@ -33,10 +33,10 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (form) => {
     try {
-      const res = await fetch('http://localhost:3000/api/auth/sign-in', {
-        method: 'POST',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch(`${BASE_URL}/api/auth/sign-in`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
@@ -56,9 +56,9 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (form) => {
     try {
-      const res = await fetch('http://localhost:3000/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
@@ -78,9 +78,9 @@ export const AuthProvider = ({ children }) => {
 
 const logout = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/auth/logout', {
-      method:'POST',
-      credentials: 'include',
+    const res = await fetch(`${BASE_URL}/api/auth/logout`, {
+      method: "POST",
+      credentials: "include",
     });
 
     if (res.ok) {
